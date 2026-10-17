@@ -1,52 +1,42 @@
-import fs from 'fs';
-import path from 'path';
 import { randomUUID } from 'crypto';
+import { getDb } from './mongo.js';
 
-const filePath = path.join(process.cwd(), 'data', 'queries.json');
+const queries = async () => (await getDb()).collection('queries');
 
-const readAll = () => {
-  if (!fs.existsSync(filePath)) return [];
-  try {
-    const parsed = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    return Array.isArray(parsed) ? parsed : [];
-  } catch {
-    return [];
-  }
+const publicQuery = (doc) => {
+  if (!doc) return null;
+  const { _id, ...query } = doc;
+  return query;
 };
 
-const writeAll = (rows) => {
-  fs.mkdirSync(path.dirname(filePath), { recursive: true });
-  fs.writeFileSync(filePath, JSON.stringify(rows, null, 2));
-};
-
-export const insertQuery = (entry) => {
-  const rows = readAll();
+export const insertQuery = async (entry) => {
   const query = {
     id: randomUUID(),
     status: 'new',
     createdAt: new Date().toISOString(),
     ...entry,
   };
-  rows.unshift(query);
-  writeAll(rows);
+  await (await queries()).insertOne({ _id: query.id, ...query });
   return query;
 };
 
-export const listQueries = () => readAll();
-
-export const updateQuery = (id, patch) => {
-  const rows = readAll();
-  const index = rows.findIndex((row) => row.id === id);
-  if (index === -1) return null;
-  rows[index] = { ...rows[index], ...patch };
-  writeAll(rows);
-  return rows[index];
+export const listQueries = async () => {
+  const rows = await (await queries()).find({}).sort({ createdAt: -1 }).toArray();
+  return rows.map(publicQuery);
 };
 
-export const deleteQuery = (id) => {
-  const rows = readAll();
-  const next = rows.filter((row) => row.id !== id);
-  if (next.length === rows.length) return false;
-  writeAll(next);
-  return true;
+export const updateQuery = async (id, patch) => {
+  const result = await (await queries()).findOneAndUpdate(
+    { id },
+    { $set: patch },
+    { returnDocument: 'after' },
+  );
+  if (!result) return null;
+  const doc = Object.prototype.hasOwnProperty.call(result, 'ok') ? result.value : result;
+  return publicQuery(doc);
+};
+
+export const deleteQuery = async (id) => {
+  const result = await (await queries()).deleteOne({ id });
+  return result.deletedCount === 1;
 };

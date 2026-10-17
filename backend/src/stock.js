@@ -1,7 +1,6 @@
-import fs from 'fs';
-import path from 'path';
+import { getDb } from './mongo.js';
 
-const filePath = path.join(process.cwd(), 'data', 'stock.json');
+const STOCK_ID = 'current';
 
 export const defaultStock = () => ({
   lot: '',
@@ -30,29 +29,30 @@ export const defaultStock = () => ({
 
 const cleanRows = (rows) => {
   if (!Array.isArray(rows)) return [];
-  return rows.slice(0, 40).map((row) => ({
-    name: String(row?.name ?? '').trim().slice(0, 160),
-    value: String(row?.value ?? '').trim().slice(0, 40),
-    unit: String(row?.unit ?? '').trim().slice(0, 16),
-  })).filter((row) => row.name);
+  return rows
+    .slice(0, 40)
+    .map((row) => ({
+      name: String(row?.name ?? '').trim().slice(0, 160),
+      value: String(row?.value ?? '').trim().slice(0, 40),
+      unit: String(row?.unit ?? '').trim().slice(0, 16),
+    }))
+    .filter((row) => row.name);
 };
 
-export const readStock = () => {
-  if (!fs.existsSync(filePath)) return defaultStock();
-  try {
-    const parsed = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    return {
-      lot: String(parsed.lot ?? '').slice(0, 80),
-      tested: String(parsed.tested ?? '').slice(0, 40),
-      primary: cleanRows(parsed.primary).length ? cleanRows(parsed.primary) : defaultStock().primary,
-      micro: cleanRows(parsed.micro),
-    };
-  } catch {
-    return defaultStock();
-  }
+const publicStock = (doc) => ({
+  lot: String(doc?.lot ?? '').slice(0, 80),
+  tested: String(doc?.tested ?? '').slice(0, 40),
+  primary: cleanRows(doc?.primary).length ? cleanRows(doc?.primary) : defaultStock().primary,
+  micro: cleanRows(doc?.micro).length ? cleanRows(doc?.micro) : defaultStock().micro,
+});
+
+export const readStock = async () => {
+  const saved = await (await getDb()).collection('stock').findOne({ _id: STOCK_ID });
+  if (!saved) return defaultStock();
+  return publicStock(saved);
 };
 
-export const writeStock = (input) => {
+export const writeStock = async (input) => {
   const stock = {
     lot: String(input?.lot ?? '').trim().slice(0, 80),
     tested: String(input?.tested ?? '').trim().slice(0, 40),
@@ -64,7 +64,6 @@ export const writeStock = (input) => {
     error.status = 400;
     throw error;
   }
-  fs.mkdirSync(path.dirname(filePath), { recursive: true });
-  fs.writeFileSync(filePath, JSON.stringify(stock, null, 2));
+  await (await getDb()).collection('stock').updateOne({ _id: STOCK_ID }, { $set: stock }, { upsert: true });
   return stock;
 };
