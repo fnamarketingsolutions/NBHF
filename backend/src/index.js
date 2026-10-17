@@ -10,10 +10,19 @@ const port = Number(process.env.PORT) || 4000;
 const jwtSecret = process.env.JWT_SECRET;
 const adminUsername = process.env.ADMIN_USERNAME;
 const adminPassword = process.env.ADMIN_PASSWORD;
-const corsOrigins = (process.env.CORS_ORIGIN || 'http://localhost:5173,http://127.0.0.1:5173')
-  .split(',')
-  .map((origin) => origin.trim())
-  .filter(Boolean);
+const corsOrigins = [
+  ...new Set(
+    [
+      'http://localhost:5173',
+      'http://127.0.0.1:5173',
+      'https://nasarebioharvest.com',
+      'https://www.nasarebioharvest.com',
+      ...(process.env.CORS_ORIGIN || '').split(','),
+    ]
+      .map((origin) => origin.trim())
+      .filter(Boolean),
+  ),
+];
 
 if (!jwtSecret || !adminUsername || !adminPassword) {
   console.error('Set JWT_SECRET, ADMIN_USERNAME and ADMIN_PASSWORD in backend/.env');

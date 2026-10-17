@@ -1,6 +1,16 @@
-const API_URL = String(import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
+const configuredApi = String(import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
 
-const apiPath = (path) => `${API_URL}${path}`;
+const apiOrigin = () => {
+  if (typeof window !== 'undefined') {
+    const host = window.location.hostname;
+    if (host === 'nasarebioharvest.com' || host === 'www.nasarebioharvest.com') {
+      return 'https://api.nasarebioharvest.com';
+    }
+  }
+  return configuredApi;
+};
+
+const apiPath = (path) => `${apiOrigin()}${path}`;
 
 const parseError = async (response) => {
   try {
