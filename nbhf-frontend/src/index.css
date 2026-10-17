@@ -1,0 +1,6 @@
+@import "tailwindcss";
+@layer base {
+    html {
+      @apply scroll-smooth scroll-pt-28; /* scroll-pt-28 gives 112px clearance for sticky nav */
+    }
+  }
