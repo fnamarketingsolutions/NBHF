@@ -1,3 +1,7 @@
+const API_URL = String(import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
+
+const apiPath = (path) => `${API_URL}${path}`;
+
 const parseError = async (response) => {
   try {
     const body = await response.json();
@@ -8,7 +12,7 @@ const parseError = async (response) => {
 };
 
 export const submitQuery = async (payload) => {
-  const response = await fetch('/api/queries', {
+  const response = await fetch(apiPath('/api/queries'), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
@@ -18,7 +22,7 @@ export const submitQuery = async (payload) => {
 };
 
 export const adminLogin = async (username, password) => {
-  const response = await fetch('/api/admin/login', {
+  const response = await fetch(apiPath('/api/admin/login'), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ username, password }),
@@ -29,7 +33,7 @@ export const adminLogin = async (username, password) => {
 
 const adminFetch = async (path, options = {}) => {
   const token = sessionStorage.getItem('nbhf-admin-token');
-  const response = await fetch(path, {
+  const response = await fetch(apiPath(path), {
     ...options,
     headers: {
       'Content-Type': 'application/json',
@@ -46,7 +50,7 @@ const adminFetch = async (path, options = {}) => {
 };
 
 export const fetchStock = async () => {
-  const response = await fetch('/api/stock');
+  const response = await fetch(apiPath('/api/stock'));
   if (!response.ok) throw new Error('Could not load lot values.');
   return response.json();
 };
