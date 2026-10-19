@@ -89,7 +89,7 @@ const Navbar = ({ onOpenQuery }) => {
             
             {/* Logo */}
             <a href="/" className="flex items-center space-x-3 group shrink-0">
-              <div className="w-11 h-11 rounded-xl bg-[#174A32] text-white flex items-center justify-center font-black text-lg shadow-sm group-hover:bg-[#1f5f40] transition-colors">
+              <div className="w-11 h-11 rounded-lg flex items-center justify-center">
                 <img src={logo} alt="NBHF Logo" className="w-full h-full object-contain" />
               </div>
               <div className="flex flex-col">
