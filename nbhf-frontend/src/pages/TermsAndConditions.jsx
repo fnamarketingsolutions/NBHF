@@ -146,7 +146,7 @@ const TermsAndConditions = () => {
           </p>
           <ul className="list-disc list-inside space-y-1 text-sm text-gray-700 pl-2">
             <li><strong className="text-gray-900">Company:</strong> NBHF (Bioharvest Fuels)</li>
-            <li><strong className="text-gray-900">Support Email:</strong> Customercare@nasarebioharvest.com</li>
+            <li><strong className="text-gray-900">Support Email:</strong> customercare@nasarebioharvest.com</li>
             <li><strong className="text-gray-900">Support Hours:</strong> Monday – Saturday (Standard Business Hours)</li>
           </ul>
         </div>

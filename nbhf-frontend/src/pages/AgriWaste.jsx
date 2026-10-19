@@ -68,36 +68,10 @@ const AgriWaste = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0E2419] via-[#122E20]/92 to-[#122E20]/75" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-          <p className="text-xs font-mono font-bold uppercase tracking-[0.22em] text-[#C89B3C] mb-4">
-            Business 01
-          </p>
+           
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extralight tracking-tight mb-4">
             Post-harvest agricultural waste
-          </h1>
-          <p className="text-lg sm:text-xl text-[#C89B3C] font-light mb-4">
-            Crop residue from Vidarbha's cotton, tur and soyabean fields
-          </p>
-          <p className="max-w-2xl text-base sm:text-lg text-white/80 font-light leading-relaxed mb-8">
-            Collected after harvest and quoted in lots of 1 ton. Farmers and aggregators can sell to NBHF; industrial users can buy.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3">
-            <button
-              type="button"
-              onClick={() => openForm('buy')}
-              className="bg-[#C89B3C] hover:bg-[#b58a32] text-[#122E20] font-semibold text-xs tracking-[0.16em] uppercase px-6 py-3.5 inline-flex items-center justify-center gap-2"
-            >
-              I want to buy
-              <ArrowRight className="w-4 h-4" />
-            </button>
-            <button
-              type="button"
-              onClick={() => openForm('sell')}
-              className="border border-white/40 hover:border-white text-white font-medium text-xs tracking-[0.16em] uppercase px-6 py-3.5 inline-flex items-center justify-center gap-2"
-            >
-              I want to sell
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
+          </h1> 
         </div>
       </section>
 
@@ -125,15 +99,11 @@ const AgriWaste = () => {
 
       <section className="bg-white border-y border-black/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16">
-          <p className="text-xs font-mono font-bold uppercase tracking-widest text-[#4F7D3A] mb-3">
-            Get a quotation
-          </p>
+           
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#174A32] mb-4 max-w-3xl">
-            Lots of 1 ton
+            write a query
           </h2>
-          <p className="text-base text-[#202824]/85 leading-relaxed max-w-3xl mb-6">
-            Cotton stalk, tur stalk and soyabean residue are quoted in lots of 1 ton. Tell us the product, number of lots, your location and pincode.
-          </p>
+         
           <div className="flex flex-col sm:flex-row gap-3">
             <button
               type="button"
@@ -155,7 +125,7 @@ const AgriWaste = () => {
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <article className="bg-white border border-black/10 rounded-2xl p-6 sm:p-8">
+          {/* <article className="bg-white border border-black/10 rounded-2xl p-6 sm:p-8">
             <p className="text-xs font-mono font-bold uppercase tracking-widest text-[#4F7D3A] mb-2">
               Farmers & aggregators
             </p>
@@ -190,9 +160,9 @@ const AgriWaste = () => {
                 WhatsApp
               </a>
             </div>
-          </article>
+          </article> */}
 
-          <article className="bg-[#174A32] text-white rounded-2xl p-6 sm:p-8">
+          {/* <article className="bg-[#174A32] text-white rounded-2xl p-6 sm:p-8">
             <p className="text-xs font-mono font-bold uppercase tracking-widest text-[#C89B3C] mb-2">
               Industrial buyers
             </p>
@@ -211,7 +181,7 @@ const AgriWaste = () => {
               Use the I want to buy form for a quotation
               <ArrowRight className="w-4 h-4" />
             </button>
-          </article>
+          </article> */}
         </div>
 
         <div id="quotation-form" className="mt-10 scroll-mt-28 max-w-3xl">

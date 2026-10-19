@@ -6,28 +6,19 @@ import MobileContactBar from '../components/MobileContactBar';
 
 const products = [
   {
-    eyebrow: 'Cow dung · bulk / wholesale',
-    title: 'Cow dung powder & granules',
-    body: 'Pre-processed, agriculture-grade. Dried, uniformly crushed and sieved into fine powder, or formed into spherical granules. Packed in 50 kg PP bags. Customised bio-fortification on request. Supplied within India and outside India.',
-    points: [
-      'Properties of the current lot published on the product page',
-      'For biogas plants, food processing, ETPs, nurseries, commercial farms',
-    ],
-    view: 'View cow dung',
-    action: 'Buy cow dung',
-    href: '/products/cow-dung',
-  },
-  {
-    eyebrow: 'Post-harvest agricultural waste',
-    title: 'Crop residue in 1-ton lots',
-    body: 'Cotton stalk (पऱ्हाटी), tur stalk (तुऱ्हाटी) with threshing residue, soyabean residue (कुटार) and bagasse, collected after harvest in Vidarbha.',
-    points: [
-      'Quoted in lots of 1 ton',
-      'NBHF buys from farmers and aggregators; sells to industrial users',
-    ],
-    view: 'View crop residue',
-    action: 'Sell crop residue',
+    eyebrow: 'Business 01',
+    title: 'Post-harvest agricultural waste',
+    body: 'Cotton stalk, tur stalk, soyabean residue, bagasse. Buy or sell in 1-ton lots.',
+    cta: 'Open page',
     href: '/products/agri-waste',
+  },
+  
+  {
+    eyebrow: 'Business 02',
+    title: 'Cow dung powder & manure',
+    body: 'Pre-processed, agriculture-grade. Bulk in 50 kg PP bags; retail packs for home use.',
+    cta: 'Open page',
+    href: '/products/cow-dung',
   },
 ];
 
@@ -58,27 +49,12 @@ const Products = () => {
               </p>
               <h2 className="text-2xl font-semibold leading-snug mb-3">{product.title}</h2>
               <p className="text-sm text-white/70 leading-relaxed">{product.body}</p>
-              <ul className="mt-4 space-y-2">
-                {product.points.map((point) => (
-                  <li key={point} className="text-sm text-white/80 flex gap-2">
-                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#6FBF6A] shrink-0" />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-auto pt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="mt-auto pt-6">
                 <a
                   href={product.href}
-                  className="inline-flex items-center justify-center gap-2 border border-white/30 hover:border-white text-white text-xs font-semibold uppercase tracking-[0.12em] px-4 py-3.5 rounded-lg"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-[#6FBF6A] hover:text-[#8fd48a]"
                 >
-                  {product.view}
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </a>
-                <a
-                  href={`${product.href}#quotation-form`}
-                  className="inline-flex items-center justify-center gap-2 bg-[#C89B3C] hover:bg-[#b58a32] text-[#122E20] text-xs font-semibold uppercase tracking-[0.12em] px-4 py-3.5 rounded-lg"
-                >
-                  {product.action}
+                  {product.cta}
                   <ArrowRight className="w-3.5 h-3.5" />
                 </a>
               </div>
