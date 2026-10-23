@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import Navbar from '../components/NavBar';
 import Footer from '../components/Footer';
 import MobileContactBar from '../components/MobileContactBar';
 
 const goToQuery = () => {
-  window.location.href = '/contact';
+  window.location.href = '/#contact';
 };
 
 const TermsAndConditions = () => {

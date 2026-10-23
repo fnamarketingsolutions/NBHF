@@ -22,7 +22,7 @@ const heroCards = [
     title: "Place an order",
     body: "Product, quantity, location and pincode. Reaches us on WhatsApp or email.",
     cta: "Open form",
-    href: "/contact",
+    href: "/order",
   },
   {
     label: "Any Question",

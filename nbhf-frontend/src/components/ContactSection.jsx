@@ -1,4 +1,3 @@
-import React from 'react';
 import QueryForm from './QueryForm';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { COMPANY_CONFIG } from '../constants/CompanyData';
@@ -59,7 +58,7 @@ const ContactSection = ({ queryIntent }) => {
 
           {/* Clean Form Column */}
           <div className="lg:col-span-7">
-            <QueryForm source="general" initialInterest={queryIntent} title="General query" />
+            <QueryForm key={queryIntent} source="general" initialInterest={queryIntent} title="General query" />
           </div>
         </div>
       </div>

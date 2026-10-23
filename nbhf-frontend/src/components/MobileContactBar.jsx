@@ -1,4 +1,3 @@
-import React from 'react';
 import { Phone, Mail, MessageSquare } from 'lucide-react';
 import { COMPANY_CONFIG } from '../constants/CompanyData';
 

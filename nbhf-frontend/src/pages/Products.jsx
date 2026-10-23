@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import Navbar from '../components/NavBar';
 import Footer from '../components/Footer';
@@ -29,7 +29,7 @@ const Products = () => {
 
   return (
     <div className="min-h-screen bg-[#F7F6F0] text-[#202824] flex flex-col font-sans selection:bg-[#174A32] selection:text-white pb-14 md:pb-0">
-      <Navbar onOpenQuery={() => { window.location.href = '/contact#query'; }} />
+      <Navbar onOpenQuery={() => { window.location.href = '/#contact'; }} />
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20 w-full">
          
@@ -64,7 +64,7 @@ const Products = () => {
       </section>
 
       <Footer />
-      <MobileContactBar onQueryClick={() => { window.location.href = '/contact#query'; }} />
+      <MobileContactBar onQueryClick={() => { window.location.href = '/#contact'; }} />
     </div>
   );
 };

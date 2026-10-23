@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { MapPin, Leaf, HeartHandshake, Flame, Factory, Droplets, Sprout, Tractor, Scissors } from 'lucide-react';
+import { useEffect } from 'react';
+import { Leaf, HeartHandshake } from 'lucide-react';
 import Navbar from '../components/NavBar';
 import Footer from '../components/Footer';
 import MobileContactBar from '../components/MobileContactBar';
@@ -16,20 +16,8 @@ const crops = [
   { name: 'Oranges', image: orangesCropImage },
 ];
 
-const residueActivities = ['Cutting', 'Shredding', 'Aggregating'];
-
-const residueTypes = ['Stalks', 'Straw', 'Stubble', 'Husks', 'Seed coats', 'Hulls'];
-
-const dungUses = [
-  { title: 'Biogas plants', icon: Flame },
-  { title: 'Waste-water treatment in food processing industries', icon: Factory },
-  { title: 'Effluent Treatment Plants (ETPs)', icon: Droplets },
-  { title: 'Plant nurseries', icon: Sprout },
-  { title: 'Commercial farms', icon: Tractor },
-];
-
 const goToQuery = () => {
-  window.location.href = '/contact';
+  window.location.href = '/#contact';
 };
 
 const About = () => {

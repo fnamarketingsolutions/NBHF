@@ -1,6 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Send, CheckCircle2 } from 'lucide-react';
 import { submitQuery } from '../lib/api';
+
+const interestLabel = (value) => (
+  value === 'buy' ? 'Buy' :
+  value === 'sell' ? 'Sell' :
+  value === 'report' ? 'Product Information' :
+  'General Query'
+);
 
 const QueryForm = ({
   initialInterest = 'general',
@@ -9,32 +16,18 @@ const QueryForm = ({
   title = '',
   showInterest = true,
 }) => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState(() => ({
     name: '',
     company: '',
     phone: '',
     email: '',
-    interest: 'General Query',
-    message: '',
-  });
+    interest: interestLabel(initialInterest),
+    message: initialMessage || '',
+  }));
 
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState('');
-
-  useEffect(() => {
-    const interest =
-      initialInterest === 'buy' ? 'Buy' :
-      initialInterest === 'sell' ? 'Sell' :
-      initialInterest === 'report' ? 'Product Information' :
-      'General Query';
-
-    setFormData(prev => ({
-      ...prev,
-      interest,
-      ...(initialMessage ? { message: initialMessage } : {}),
-    }));
-  }, [initialInterest, initialMessage]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

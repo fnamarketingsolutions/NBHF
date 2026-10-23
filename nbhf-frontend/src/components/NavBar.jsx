@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { 
   Menu, 
   X, 
@@ -48,7 +48,7 @@ const Navbar = ({ onOpenQuery }) => {
             </div>
 
             {/* Upper Right: Stacked Contacts */}
-            <div className="flex flex-col space-y-1 items-end font-mono text-[11px]">
+            <div className="flex flex-col space-y-1 items-end font-sans text-[11px]">
               <a
                 href={`tel:${COMPANY_CONFIG.phoneDial}`}
                 className="flex items-center space-x-1.5 text-white/90 hover:text-[#C89B3C] transition-colors"
@@ -88,16 +88,16 @@ const Navbar = ({ onOpenQuery }) => {
           <div className="flex justify-between items-center h-20">
             
             {/* Logo */}
-            <a href="/" className="flex items-center space-x-3 group shrink-0">
-              <div className="w-11 h-11 rounded-lg flex items-center justify-center">
-                <img src={logo} alt="NBHF Logo" className="w-full h-full object-contain" />
+            <a href="/" className="flex items-center gap-2.5 min-w-0">
+              <div className="w-11 h-11 shrink-0 rounded-lg flex items-center justify-center">
+                <img src={logo} alt="" className="w-full h-full object-contain" />
               </div>
-              <div className="flex flex-col">
-                <span className="font-black text-2xl tracking-tighter text-[#174A32] leading-none flex items-center">
-                  NBHF
-                 </span>
-                
-              </div>
+              <span className="font-bold text-sm sm:text-base leading-tight text-[#174A32] xl:hidden">
+                {COMPANY_CONFIG.name}
+              </span>
+              <span className="hidden xl:block font-black text-2xl tracking-tighter text-[#174A32] leading-none">
+                {COMPANY_CONFIG.shortName}
+              </span>
             </a>
 
             {/* Desktop Navigation Links */}
@@ -167,7 +167,7 @@ const Navbar = ({ onOpenQuery }) => {
               </div>
 
               {/* Contact Links */}
-              <div className="pt-3 border-t border-black/10 space-y-2 text-xs font-mono">
+              <div className="pt-3 border-t border-black/10 space-y-2 text-xs font-sans">
                 <a
                   href={`tel:${COMPANY_CONFIG.phoneDial}`}
                   className="flex items-center space-x-2 text-[#202824] hover:text-[#174A32]"

@@ -148,7 +148,11 @@ const Admin = () => {
   };
 
   useEffect(() => {
-    if (token) load();
+    if (!token) return undefined;
+    const timer = window.setTimeout(() => {
+      load();
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, [token]);
 
   const inPage = useMemo(

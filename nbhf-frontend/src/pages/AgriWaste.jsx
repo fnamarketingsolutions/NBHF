@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { ArrowRight, Phone, MessageCircle } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import Navbar from '../components/NavBar';
 import Footer from '../components/Footer';
 import MobileContactBar from '../components/MobileContactBar';
@@ -9,9 +8,6 @@ import turStalkImage from '../assets/tur-stalk.jpg';
 import soyabeanStalkImage from '../assets/soyabean-stalk.jpg';
 import heroBackgroundImage from '../assets/hero-bg.jpg';
 import bagasseImage from '../assets/baggase.png';
-
-const PHONE_DISPLAY = '+91 91369 84957';
-const PHONE_DIAL = '+919136984957';
 
 const residues = [
   {
@@ -79,13 +75,7 @@ const AgriWaste = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {residues.map((item) => (
             <article key={item.name} className="bg-white border border-black/10 rounded-2xl overflow-hidden flex flex-col">
-              {item.image ? (
-                <img src={item.image} alt={item.name} className="h-40 w-full object-cover" />
-              ) : (
-                <div className="h-40 w-full bg-[#174A32] flex items-end p-4">
-                  <span className="text-white/80 text-xs uppercase tracking-[0.16em]">On enquiry</span>
-                </div>
-              )}
+              <img src={item.image} alt={item.name} className="h-40 w-full object-cover" />
               <div className="p-5 flex flex-col flex-1">
                 <p className="text-2xl font-semibold text-[#174A32] leading-tight">{item.script}</p>
                 <h2 className="mt-2 text-lg font-bold text-[#202824]">{item.name}</h2>
@@ -124,71 +114,12 @@ const AgriWaste = () => {
       </section>
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          {/* <article className="bg-white border border-black/10 rounded-2xl p-6 sm:p-8">
-            <p className="text-xs font-mono font-bold uppercase tracking-widest text-[#4F7D3A] mb-2">
-              Farmers & aggregators
-            </p>
-            <h2 className="text-2xl font-bold text-[#174A32] mb-3">Selling residue to NBHF</h2>
-            <p className="text-sm sm:text-base text-[#202824]/85 leading-relaxed mb-4">
-              Tell us the crop (cotton, tur, soyabean), approximate quantity in tons, village or town and pincode.
-            </p>
-            <p className="text-sm sm:text-base text-[#202824]/85 leading-relaxed mb-4">
-              Use the{' '}
-              <button type="button" onClick={() => openForm('sell')} className="font-semibold text-[#174A32] underline">
-                I want to sell
-              </button>{' '}
-              form, or call / WhatsApp{' '}
-              <a href={`tel:${PHONE_DIAL}`} className="font-semibold text-[#174A32]">
-                {PHONE_DISPLAY}
-              </a>
-              .
-            </p>
-            <p className="text-sm font-medium text-[#174A32]">NBHF will contact you.</p>
-            <div className="mt-5 flex flex-wrap gap-3 text-sm">
-              <a href={`tel:${PHONE_DIAL}`} className="inline-flex items-center gap-2 text-[#174A32] font-semibold">
-                <Phone className="w-4 h-4" />
-                Call
-              </a>
-              <a
-                href={`https://wa.me/919136984957`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-[#174A32] font-semibold"
-              >
-                <MessageCircle className="w-4 h-4" />
-                WhatsApp
-              </a>
-            </div>
-          </article> */}
-
-          {/* <article className="bg-[#174A32] text-white rounded-2xl p-6 sm:p-8">
-            <p className="text-xs font-mono font-bold uppercase tracking-widest text-[#C89B3C] mb-2">
-              Industrial buyers
-            </p>
-            <h2 className="text-2xl font-bold mb-3">Buying residue from NBHF</h2>
-            <p className="text-sm sm:text-base text-white/85 leading-relaxed mb-3">
-              Choose the residue type and number of 1-ton lots.
-            </p>
-            <p className="text-sm sm:text-base text-white/85 leading-relaxed mb-4">
-              Give the delivery location and pincode.
-            </p>
-            <button
-              type="button"
-              onClick={() => openForm('buy')}
-              className="inline-flex items-center gap-2 text-sm font-semibold text-[#C89B3C] hover:text-white"
-            >
-              Use the I want to buy form for a quotation
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </article> */}
-        </div>
-
-        <div id="quotation-form" className="mt-10 scroll-mt-28 max-w-3xl">
+        <div id="quotation-form" className="scroll-mt-28 max-w-3xl">
           <h2 className="text-2xl font-bold text-[#174A32] mb-4">
-            {intent === 'sell' ? 'I want to sell' : 'I want to buy'}
+            {intent === 'sell' ? 'I want to sell' : intent === 'general' ? 'Write a query' : 'I want to buy'}
           </h2>
           <QueryForm
+            key={intent}
             source="agri-waste"
             showInterest={false}
             title={intent === 'sell' ? 'I want to sell' : intent === 'general' ? 'Write a query' : 'I want to buy'}

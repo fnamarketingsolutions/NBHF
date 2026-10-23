@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Phone, MessageCircle } from 'lucide-react';
 import Navbar from '../components/NavBar';
 import Footer from '../components/Footer';
@@ -36,7 +36,7 @@ const faqs = [
     answer: (
       <>
         Yes. Cow dung powder and granules are offered within India and outside India. Share the destination and quantity in the{' '}
-        <a href="/contact#order" className={linkClass}>order form</a>
+        <a href="/order" className={linkClass}>order form</a>
         {' '}for a quotation.
       </>
     ),
@@ -53,8 +53,8 @@ const faqs = [
     question: 'What is the difference between bulk and retail?',
     answer: (
       <>
-        Bulk is agriculture-grade powder or granules in 50 kg PP bags, sold by weight to industry and commercial growers. Retail is the same processed cow dung in small packs for home gardens; use{' '}
-        <a href="/products/cow-dung#retail" className={linkClass}>Buy now</a>
+        Bulk is agriculture-grade powder or granules in 50 kg PP bags, sold by weight to industry and commercial growers. Retail is the same processed cow dung in small packs for home gardens. Order either through the{' '}
+        <a href="/order" className={linkClass}>order form</a>
         .
       </>
     ),
@@ -76,7 +76,7 @@ const faqs = [
     answer: (
       <>
         Fill the{' '}
-        <a href="/contact#order" className={linkClass}>order form</a>
+        <a href="/order" className={linkClass}>order form</a>
         {' '}(it sends your details to us on WhatsApp or email), or contact us directly:{' '}
         <a href={`tel:${PHONE_DIAL}`} className={linkClass}>{PHONE_DISPLAY}</a>
         {' '}(call or{' '}

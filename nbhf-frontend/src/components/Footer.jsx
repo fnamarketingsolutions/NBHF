@@ -1,5 +1,4 @@
 
-import React from 'react';
 import { Headphones, Mail, ArrowUpRight } from 'lucide-react';
 import { COMPANY_CONFIG } from '../constants/CompanyData';
 import logo from '../assets/logo_transparent.png';
